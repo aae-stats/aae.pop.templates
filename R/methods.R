@@ -127,7 +127,7 @@ combine_args <- function(x, y) {
     warning(
       "the following arguments are provided in both args ",
       "and in the template object: ",
-      args[conflict],
+      names(x)[conflict],
       ". This is currently not supported, update template$args ",
       "directly prior to calling simulate",
       call. = FALSE
