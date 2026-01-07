@@ -5,15 +5,19 @@
 \alias{simulate.template}
 \title{Methods for population dynamics templates}
 \usage{
-\method{simulate}{template}(
-  object,
-  nsim = 1,
-  seed = NULL,
-  ...,
-  init = NULL,
-  options = list(),
-  args = list()
-)
+\method{simulate}{template}(object, nsim = 1, seed = NULL, ...)
+}
+\arguments{
+\item{object}{a \code{template} object returned by
+\code{\link{get_template}}}
+
+\item{nsim}{the number of replicate simulations (default = 1)}
+
+\item{seed}{optional seed used prior to initialisation and simulation to
+give reproducible results}
+
+\item{\dots}{additional arguments passed to the \code{simulate.dynamics}
+function}
 }
 \description{
 Methods to simulate and plot population dynamics

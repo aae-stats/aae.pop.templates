@@ -14,6 +14,4 @@
 #'   for details on defining custom population model templates.
 #'
 #' @keywords internal
-#'
-#' @docType _PACKAGE
-NULL
+"_PACKAGE"

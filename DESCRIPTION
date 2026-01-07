@@ -23,6 +23,7 @@ Depends:
     aae.pop
 Imports:
     stats,
+    graphics,
     Rdpack (>= 0.7)
 Suggests:
     knitr,
