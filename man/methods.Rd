@@ -5,7 +5,16 @@
 \alias{simulate.template}
 \title{Methods for population dynamics templates}
 \usage{
-\method{simulate}{template}(object, nsim = 1, seed = NULL, ...)
+\method{simulate}{template}(
+  object,
+  nsim = 1,
+  seed = NULL,
+  ...,
+  init = NULL,
+  options = list(),
+  args = list(),
+  .future = FALSE
+)
 }
 \arguments{
 \item{object}{a \code{template} object returned by
@@ -18,8 +27,67 @@ give reproducible results}
 
 \item{\dots}{additional arguments passed to the \code{simulate.dynamics}
 function}
+
+\item{init}{an array of initial conditions with one row per replicate and one
+column per population stage. If \code{obj} has been created with
+\code{\link{multispecies}}, initial conditions can be provided as a list or
+array with one element or slice per species, or as a matrix, in which case
+all species are assumed to share the same initial conditions. Defaults
+to \code{NULL}, in which case initial conditions are generated randomly
+according to \code{options()$aae.pop_initialisation}}
+
+\item{options}{a named \code{list} of simulation options. Currently accepted
+  values are:
+
+  - \code{ntime} the number of time steps to simulate, ignored if \code{obj}
+      includes a \code{\link{covariates}} (default = 50)
+
+  - \code{keep_slices} \code{logical} defining whether to keep intermediate
+      population abundances or (if \code{FALSE}) to return only the final
+      time slice
+
+  - \code{tidy_abundances} a function to handle predicted abundance data
+      that may be non-integer. Defaults to \code{identity}; suggested
+      alternatives are \code{floor}, \code{round}, or \code{ceiling}
+
+  - \code{initialise_args} a list of arguments passed to the function
+      used to initialise abundance trajectories. Only used if
+      \code{init = NULL}. Defaults to \code{options()$aae.pop_lambda},
+      which specifies lambda for Poisson random draws. The default
+      initialisation function is defined by
+      \code{options()$aae.pop_initialisation}.
+
+   - \code{update} a function to update abundances from one time
+      step to the next. Defaults to \code{options()$aae.pop_update}.}
+
+\item{args}{named list of lists passing arguments to processes defined
+  in \code{object}, including \code{interaction} for
+  \code{\link{multispecies}} objects. Lists (up to one per process)
+  can contain a mix of static, dynamic, and function arguments.
+  Dynamic arguments must be lists with one element per time step.
+  Function arguments must be functions that calculate arguments
+  dynamically in each generation based on from the population dynamics
+  object, population abundances, and time step in each generation.
+  All other classes (e.g., single values, matrices, data frames)
+  are treated as static arguments. Covariates contained in numeric
+  vectors, matrices, or data frames can be formatted as dynamic
+  arguments with the \code{format_covariates} function.
+
+  \code{args} for \code{\link{multispecies}} objects must have one
+  element per species (defaults will expand automatically if not provided)}
+
+\item{.future}{flag to determine whether the future package should be
+used to manage updates for multispecies models (an embarrassingly
+parallel problem)}
 }
 \description{
 Methods to simulate and plot population dynamics
   defined in \code{template} objects.
+}
+\details{
+Details of how to use \code{simulate} are covered in the
+  documentation and vignettes for the `aae.pop` R package. These functions
+  provide convenient argument handling and wrappers for templated population
+  dynamics models but are otherwise passing arguments directly to
+  \code{simulate}
 }
