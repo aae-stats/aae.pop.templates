@@ -15,5 +15,5 @@
 #'
 #' @keywords internal
 #'
-#' @docType package
+#' @docType _PACKAGE
 NULL

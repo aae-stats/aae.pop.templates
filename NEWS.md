@@ -1,17 +1,18 @@
 # aae.pop.templates (development version)
 
-# aae.pop.templates 0.0.4.9002
+# aae.pop.templates 0.0.5.9001
+
+## Fixes
+
+- Shift templates from aae.pop to aae.pop.templates package
+
+
+# aae.pop.templates 0.0.5
 
 ## Features
 
 - Update river blackfish model to use an 11-age-class Leslie matrix
     instead of an age and stage based structure
-
-
-# aae.pop.templates 0.0.4.9001
-
-## Features
-
 - Update hypoxia trigger options for Murray cod population model template
 
 
