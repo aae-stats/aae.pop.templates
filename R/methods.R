@@ -105,7 +105,10 @@ simulate.template <- function(
     nsim = nsim,
     seed = seed,
     ...,
-    args = combined
+    init = init,
+    options = options,
+    args = combined,
+    .future = .future
   )
 
 }
